@@ -1,37 +1,34 @@
-## Welcome to GitHub Pages
 
-You can use the [editor on GitHub](https://github.com/thinpv/viduino_buildroot/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Viduino Uno Buildroot
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Build Viduino Uno Buildroot
+To build buildroot for Viduino Uno, follow these next instructions:
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+1. Download source code
 ```
+git clone https://github.com/thinpv/viduino_buildroot.git
+```
+2. Define config:
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/thinpv/viduino_buildroot/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Using SPI flash
+```
+make viduino_uno_flash_defconfig
+```
+Using SD card
+```
+make viduino_uno_tf_defconfig
+```
+3. Build
+```
+make
+```
+After finishing, img file is saved in output/images
+4. Burn img
+Using SPI flash
+- First, connect Viduino Uno with pc with FEL mode
+- Then, run command
+```
+sudo sunxi-fel -p spiflash-write 0 output/images/flash.bin
+```
+Using SD card
+- Use balenaEtcher to burn file output/images/sdcard.img
