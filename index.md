@@ -30,5 +30,6 @@ Using SPI flash
 ```
 sudo sunxi-fel -p spiflash-write 0 output/images/flash.bin
 ```
+
 Using SD card
 - Use balenaEtcher to burn file output/images/sdcard.img
